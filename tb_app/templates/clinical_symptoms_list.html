@@ -1,0 +1,110 @@
+{% load widget_tweaks %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load crispy_forms_tags %}
+
+<style>
+  #modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #modalContent {
+    width: 400px; 
+    height: 300px; 
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  #closeModalBtn {
+    margin-top: 10px;
+  }
+  </style>
+ <style>
+  .row {
+    margin-bottom: 5px; /* Adjust the value as needed */
+    margin-top: 5px; /* Adjust the value as needed */
+  }
+</style>
+</head>
+{% block content %}
+<!--bb-->
+
+
+<!--aa-->
+<div class="col-md-4">  <button onclick="popup2({{ client.id }})">Add New</button>  </div>
+<ul>
+  <b><div class="row h6">
+    <div class="col-md-1"> Assessment Date  </div>
+    <div class="col-md-1">   Chronic cough > 2Weeks</div>
+    <div class="col-md-1">  Haemoptysis </div>
+    <div class="col-md-1"> Chest_pain </div>
+    <div class="col-md-1"> Dyspnea </div>
+    <div class="col-md-1">  History of  fever</div>
+    <div class="col-md-1">  Night_ weat </div>
+    <div class="col-md-1">     Weight lost	 </div> 
+    <div class="col-md-1"> Other symptoms </div>
+    <div class="col-md-1">  </div>
+    <div class="col-md-1">  </div>
+  </div> </b>
+<hr>
+{% for cs in clinical_symptoms %}
+<div class="row h6">
+    <div class="col-md-1">  {{ cs.assessment_date }}</div>
+    <div class="col-md-1">  {{ cs.chronic_cough_gt_2Weeks }}</div>
+    <div class="col-md-1">  {{ cs.haemoptysis}}</div>
+    <div class="col-md-1"> {{ cs.chest_pain}} </div>
+
+    <div class="col-md-1">  {{ cs.dyspnea }} </div>
+    <div class="col-md-1">  {{ cs.history_of_fever }} </div>
+    <div class="col-md-1">  {{ cs.night_sweat }} </div>
+    <div class="col-md-1">  {{ cs.weight_lost }} </div>
+    <div class="col-md-1">  {{ cs.other_symptom }} </div>
+    <div class="col-md-1">   </div>
+    <div class="col-md-1">   </div>
+
+
+    <div class="col-md-1"> <button onclick="popup({{ cs.id }})">Edit</button>  </div>
+ 
+    
+  </div> 
+  <hr>
+{% empty %}
+<p style="font-size:12px; "> No data found - Click <b>'Add New'</b> to create new record </p>
+{% endfor %}
+</ul>
+
+{% endblock %}
+
+<script>
+  function popup(csid) {
+  var windowFeatures = 'height=600,width=700,left=400,top=100,scrollbars=yes,resizable=yes,menubar=no,toolbar=no,location=no,directories=no,status=no';
+  var url = "{% url 'edit_clinical_symptoms' 0 %}".replace("0", csid);
+  var newWindow = window.open(url, 'popUpWindow', windowFeatures);
+
+  newWindow.addEventListener('load', function() {
+    newWindow.document.body.style.backgroundColor = 'gray'; // Change the background color to red
+})};
+  </script>
+
+  
+<script>
+  function popup2(ClientId) {
+  var windowFeatures = 'height=600,width=700,left=400,top=100,scrollbars=yes,resizable=yes,menubar=no,toolbar=no,location=no,directories=no,status=no';
+  var url = "{% url 'create_clinical_symptoms' client_id %}";
+  var newWindow = window.open(url, 'popUpWindow', windowFeatures);
+
+  newWindow.addEventListener('load', function() {
+    newWindow.document.body.style.backgroundColor = 'gray'; // Change the background color to red
+})};
+  </script>
+  

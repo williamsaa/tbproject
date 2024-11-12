@@ -1,0 +1,91 @@
+{% extends 'base_header3.html' %}
+
+{% load widget_tweaks %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+
+.btn1 {
+    width: 150px; /* Adjust this width as needed */
+}
+	
+</style>
+
+
+<div class="row">
+	<div class="col-md-4">
+	</div>
+	<div class="col-md-4"><h4>Reports</h4>
+	</div>
+	<div class="col-md-4">
+	</div>
+</div>
+
+
+
+<hr>
+
+<div class="container-fluid">
+    
+	<div class="row">
+		<div class="col-md-1">
+            
+        </div>
+		<div class="col-md-3">
+            <button type="button" class="btn btn-primary">List patient with Tx failure</button>
+        </div>
+		<div class="col-md-4">
+			<button type="button" class="btn btn-primary">List severe cases</button>
+
+		</div>
+		<div class="col-md-4">
+			<button type="button" class="btn btn-primary">Total Confirmed by Parish</button>
+            
+		</div>
+		
+	</div>
+	<p></p>
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-3">
+			<button type="button" class="btn btn-primary">Key populations by Age groups</button>
+		</div>
+	
+		<div class="col-md-4">
+			<button type="button" class="btn btn-primary">Patient Status Summary
+			</button>
+
+		</div>
+		<div class="col-md-4">
+			<button type="button" class="btn btn-primary">Contact Investigation Summary
+
+		</div>
+	</div>
+	<p></p>
+
+
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-3">
+			<button type="button" class="btn btn-primary">Comorbidities Summary
+			</button>
+		</div>
+		<div class="col-md-4">
+			<button type="button" class="btn btn-primary">Treatment Outcome Summary
+			</button>
+		</div>
+		<div class="col-md-4">
+			<button type="button" class="btn btn-primary"> Cases Status Summary
+			</button>
+		</div>
+	</div>
+<p></p>
+	
+</div>
+
+{% endblock %}

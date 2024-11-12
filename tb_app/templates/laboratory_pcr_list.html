@@ -1,0 +1,94 @@
+{% load widget_tweaks %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load crispy_forms_tags %}
+
+<style>
+  #modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #modalContent {
+    width: 400px; 
+    height: 300px; 
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  #closeModalBtn {
+    margin-top: 10px;
+  }
+  </style>
+ <style>
+  .row {
+    margin-bottom: 5px; /* Adjust the value as needed */
+    margin-top: 5px; /* Adjust the value as needed */
+  }
+</style>
+</head>
+{% block content %}
+<!--bb-->
+
+
+<!--aa-->
+<div class="col-md-4">  <button onclick="popup2({{ client.id }})">Add New</button>  </div>
+<ul>
+  <b><div class="row h6">
+    <div class="col-md-1"> Lab #  </div>
+    <div class="col-md-2"> Date Sample Taken </div>
+    <div class="col-md-2"> Specimen type </div>
+    <div class="col-md-3">  Test Result</div>
+    <div class="col-md-3">  Notes </div>
+  </div> </b>
+<hr>
+{% for xr in laboratory_pcr %}
+<div class="row h6">
+   <div class="col-md-1">  {{ xr.lab_no }}</div>
+    <div class="col-md-2">  {{ xr.date_sample_taken }}</div>
+    <div class="col-md-2">  {{ xr.specimen_type }}</div>
+    <div class="col-md-3">  {{ xr.test_results }}</div>
+    <div class="col-md-3">  {{ xr.notes}}</div>
+    <div class="col-md-1"> <button onclick="popup({{ xr.id }})">Edit</button>  </div>
+
+  </div> 
+  <hr>
+{% empty %}
+<p style="font-size:12px; "> No data found - Click <b>'Add New'</b> to create new record </p>
+{% endfor %}
+</ul>
+
+{% endblock %}
+
+<script>
+  function popup(coid) {
+  var windowFeatures = 'height=600,width=700,left=400,top=100,scrollbars=yes,resizable=yes,menubar=no,toolbar=no,location=no,directories=no,status=no';
+  var url = "{% url 'edit_laboratory_pcr' 0 %}".replace("0", coid);
+  var newWindow = window.open(url, 'popUpWindow', windowFeatures);
+
+  newWindow.addEventListener('load', function() {
+    newWindow.document.body.style.backgroundColor = 'gray'; // Change the background color to red
+})};
+  </script>
+
+  
+<script>
+  function popup2(ClientId) {
+  var windowFeatures = 'height=600,width=700,left=400,top=100,scrollbars=yes,resizable=yes,menubar=no,toolbar=no,location=no,directories=no,status=no';
+  var url = "{% url 'create_laboratory_pcr' client_id %}";
+  var newWindow = window.open(url, 'popUpWindow', windowFeatures);
+
+  newWindow.addEventListener('load', function() {
+    newWindow.document.body.style.backgroundColor = 'gray'; // Change the background color to red
+})};
+  </script>
+  
